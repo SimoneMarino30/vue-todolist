@@ -18,13 +18,17 @@
 // text, una stringa che indica il testo del todo e ✔
 // done, un booleano (true/false) che indica se il todo è stato fatto oppure no ✔
 //  creo una lista html per ogni to do ✔
-// SE la proprietà done è true:
-// visualizzo il testo sbarrato
+// SE la proprietà done è true: ✔
+// visualizzo il testo sbarrato ✔
 // creo a fianco di ogni item una "x" che ✔
 // SE cliccata rimuove l'item dalla lista ✔
 // creare un imput e un button ✔
-// SE cliccato,
-// il testo viene letto e crea un nuovo todo
+// SE cliccato, ✔
+// il testo viene letto e crea un nuovo todo ✔
+
+// **Bonus:**
+// 1- oltre al click sul pulsante, intercettare anche il tasto ENTER per aggiungere il todo alla lista
+// 2- cliccando sul testo dell'item, invertire il valore della proprietà done del todo corrispondente (se done era uguale a false, impostare true e viceversa)
 
 // VUE START
 const { createApp } = Vue;
@@ -54,27 +58,28 @@ createApp({
           done: false,
         },
       ],
-      newTask: [
-        {
-          todo: "",
-          done: false,
-        },
-      ],
+      newTaskTodo: "",
     };
   },
 
   methods: {
     addTask() {
-      // console.log(this.newTask);
       const newTask = {
-        todo: this.todoItems.todo,
+        todo: this.newTaskTodo,
         done: false,
       };
-      this.todoItems.todo.push(newTask);
+      this.todoItems.push(newTask);
+    },
+
+    completedTask(index) {
+      if (!this.todoItems[index].done) {
+        this.todoItems[index].done = true;
+      } else {
+        this.todoItems[index].done = false;
+      }
     },
 
     removeTask(i) {
-      // console.log("click su l'indice " + i);
       this.todoItems.splice(i, 1);
     },
   },

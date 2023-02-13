@@ -4,3 +4,11 @@
   padding: 0;
   box-sizing: border-box;
 }
+
+.task-done {
+  text-decoration: line-through;
+}
+
+.fa-solid .fa-trash-can {
+  text-decoration: none;
+}

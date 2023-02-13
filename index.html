@@ -44,15 +44,16 @@
           <a class="navbar-brand mx-5"> Vue JS </a>
           <form class="d-flex col-6 mx-5" role="search">
             <input
-              v-model="NewTask"
+              @keyUp.enter="addTask"
+              v-model="newTaskTodo"
               class="form-control me-2"
-              type="search"
+              type="text"
               placeholder="Add a task to do"
-              aria-label="Search"
+              aria-label="Add a task to do"
             />
             <button
               class="btn btn-outline-success"
-              type="submit"
+              type="button"
               @click="addTask()"
             >
               Add
@@ -65,10 +66,12 @@
         <h1 class="text-center my-5">TODOlist</h1>
         <ol class="list-group list-group-numbered">
           <li
+            :class="(todoItems[index].done) ? 'task-done' : ''"
+            @click="completedTask(index)"
             v-for="(todoItem, index) in todoItems"
             class="list-group-item d-flex"
           >
-            <span @click="removeTask(index)">{{ todoItem.todo }}</span>
+            <span>{{ todoItem.todo }}</span>
             <i
               class="fa-solid fa-trash-can ms-auto"
               @click="removeTask(index)"
