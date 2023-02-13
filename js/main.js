@@ -1,4 +1,4 @@
-// TRACCIA
+// TRACCIA (✔)
 // Rifare l'esercizio della to do list.
 // Questa volta però ogni todo sarà un oggetto, formato da due proprietà:
 // - text, una stringa che indica il testo del todo
@@ -14,11 +14,68 @@
 // 1- oltre al click sul pulsante, intercettare anche il tasto ENTER per aggiungere il todo alla lista
 // 2- cliccando sul testo dell'item, invertire il valore della proprietà done del todo corrispondente (se done era uguale a false, impostare true e viceversa)
 
-// VUE
+// Creo un array di oggetti con due proprietà: ✔
+// text, una stringa che indica il testo del todo e ✔
+// done, un booleano (true/false) che indica se il todo è stato fatto oppure no ✔
+//  creo una lista html per ogni to do ✔
+// SE la proprietà done è true:
+// visualizzo il testo sbarrato
+// creo a fianco di ogni item una "x" che ✔
+// SE cliccata rimuove l'item dalla lista ✔
+// creare un imput e un button ✔
+// SE cliccato,
+// il testo viene letto e crea un nuovo todo
+
+// VUE START
 const { createApp } = Vue;
 
 createApp({
   data() {
-    return {};
+    return {
+      todoItems: [
+        {
+          todo: "Fare gli esercizi di Vue",
+          done: false,
+        },
+        {
+          todo: "Preparare la cena",
+          done: false,
+        },
+        {
+          todo: "Lavare i piatti",
+          done: false,
+        },
+        {
+          todo: "Portare fuori il cane",
+          done: false,
+        },
+        {
+          todo: "Leggere il libro",
+          done: false,
+        },
+      ],
+      newTask: [
+        {
+          todo: "",
+          done: false,
+        },
+      ],
+    };
+  },
+
+  methods: {
+    addTask() {
+      // console.log(this.newTask);
+      const newTask = {
+        todo: this.todoItems.todo,
+        done: false,
+      };
+      this.todoItems.todo.push(newTask);
+    },
+
+    removeTask(i) {
+      // console.log("click su l'indice " + i);
+      this.todoItems.splice(i, 1);
+    },
   },
 }).mount("#root");
